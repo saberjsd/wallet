@@ -3,31 +3,36 @@
       <div class="navWrap">
         <ul>
           <li class="menu-logo">
-            <span class="menu-icon"><img style="margin-top:15px;" src='../assets/images/images/logo.png'/></span>
+            <span class="menu-icon"><img style="margin-top:10px;" src='../assets/img/index_logo.png'/></span>
             <span class="menu-text">{{$t("message.Nav_log")}}</span>
           </li>
           <li class="menu-account" style="margin-left:100px;" v-if="IsLogin" @click="toIndex()">
             <span class="menu-icon"><img style="margin-top: 31px;" src='../assets/images/images/account.png'/></span>
             <span class="menu-text">我的账户</span>
           </li>
-          <li class="menu-asch" style="margin-left:80px;">
+          <!-- <li class="menu-asch" style="margin-left:80px;">
             <a :href="Link" target="blank">
               <span class="menu-icon"><img style="margin-top: 33px;" src='../assets/images/images/asch.png'/></span>
               <span class="menu-text">阿希钱包</span>
             </a>
             
-          </li>
-          <li class="menu-github" style="margin-left:80px;">
+          </li> -->
+          <!-- <li class="menu-github" style="margin-left:80px;">
             <a href="https://github.com/DreamworldDapp/DDC-Wallet-Front" title="github of DDC-Wallent-Front" target="blank" >
               <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/github.png'/></span>
               <span class="menu-text">GitHub</span>
             </a>
+          </li> -->
+          <li class="menu-github" style="margin-left:80px;">
+            <a href="http://3udao.com/" title="3U" target="__blank" >
+              <span class="menu-text">3U官网</span>
+            </a>
           </li>
           <li class="menu-languge menu-right" style="margin-left:60px;" v-if="IsLogin" @click="logout()" >
-            <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/退出.png'/></span>
+            <!-- <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/退出.png'/></span> -->
             <span class="menu-text">{{$t("message.NavLogOut")}}</span>
           </li>
-          <li class="menu-login menu-right">
+          <!-- <li class="menu-login menu-right">
             <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/语言.png'/></span>
             <span class="menu-text">
               <el-dropdown @command="handleCommand">
@@ -40,7 +45,7 @@
                 </el-dropdown-menu>
               </el-dropdown>
             </span>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -133,7 +138,9 @@ export default {
 .nav{
   /* height: 80px; */
   overflow: hidden;
-  background: rgb(36,48,105);
+  background: #ffffff;
+  color:#282828;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .navWrap{
   /* height: 80px; */
@@ -146,28 +153,28 @@ export default {
 }
 .navWrap>ul>li{
   height: 100%;
-  color: #fff;
-  line-height: 80px;
+  color: #282828;
+  line-height: 70px;
   float: left;
   cursor: pointer;
   transition: all .5s ease-in-out;
 }
 .navWrap>ul>li>a{
   display: block;
-  height: 80px;
+  height: 70px;
   line-height: 80px;
 
 }
 .navWrap>ul>li:hover span{
-  color:#fff;
+  color: #57c586;;
 }
 .navWrap ul>li .menu-text{
   padding-left: 8px;
 }
 .navWrap>ul>li span{
   float: left;
-  height: 80px;
-  line-height: 80px;
+  height: 70px;
+  line-height: 70px;
   transition:color .1s ease-in-out;
 }
 .navWrap .menu-logo{
@@ -184,7 +191,7 @@ export default {
 }
 .menu-asch .menu-text,
 .menu-github .menu-text{
-  color: #949bc7;
+  color: #656565;
 }
 .navWrap .menu-logo .menu-icon{
   position: relative;

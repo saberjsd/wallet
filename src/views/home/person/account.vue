@@ -369,7 +369,7 @@ export default {
         amount: 0,
         currency: ""
       },
-      DepositeOption: ["XAS", "DDC"],
+      DepositeOption: ["XAS", "USO"],
       DepositeRules: {
         amount: [{ validator: checknumber2, trigger: "blur" }],
         secondSecret: [{ validator: checkbanlance2, trigger: "blur" }]
@@ -430,7 +430,7 @@ export default {
         }
         if (amount > ddcBalance) {
           var error = this.$t("message.account_form_error_WithDrawl_1");
-          return { success: false, error: "DDC " + error };
+          return { success: false, error: "USO " + error };
         }
         return { success: true };
       }
@@ -557,7 +557,7 @@ export default {
               })
               .map((item, index) => {
                 var currency =
-                  item.currency == Config.cy ? "DDC" : item.currency;
+                  item.currency == Config.cy ? "USO" : item.currency;
                 item.amounts = item.amount / 1e8 + " " + currency;
                 if (item.senderId == address) {
                   item.senderId =
@@ -673,7 +673,7 @@ export default {
         return false;
       }
       var currency =
-        this.form.currency == "DDC" ? Config.cy : this.form.currency;
+        this.form.currency == "USO" ? Config.cy : this.form.currency;
       this.$refs["form"].validate(validat => {
         if (validat) {
           this.TiXian(this.form.amount, currency);
@@ -748,7 +748,7 @@ export default {
     Deposite() {
       var dappid = Config.dappid;
       var currency =
-          this.DepositeForm.currency == "DDC"
+          this.DepositeForm.currency == "USO"
             ? Config.cy
             : this.DepositeForm.currency,
         amount = parseFloat(this.DepositeForm.amount) * 1e8,

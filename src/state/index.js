@@ -1,0 +1,67 @@
+//import Vue from 'vue';
+//import Vuex from 'vuex';
+Vue.use(Vuex);
+export default new Vuex.Store({
+    state:{
+        user:null,
+        activeName:"Area",
+        balance:0,//侧链ddc余额
+        xasBlance:0,//侧链xas币余额
+        assetBalance:0,//主链ddc余额
+        assetXASBalance:0//主链XAS余额
+    },
+    mutations:{
+        setUser(state,user){
+            state.user=user;
+        },
+        setActive(state,activeName){
+            state.activeName=activeName
+        },
+        logout(state){
+            state.user=null
+        },
+        setBalance(state,balance){
+            if(balance&&balance>=0){
+                state.balance=balance;
+            } 
+        },
+        setXASBalance(state,balance){
+            if(balance&&balance>=0){
+                state.xasBlance=balance;
+            } 
+        },
+        setAssetBalance(state,balance){
+            if(balance&&balance>=0){
+                state.assetBalance=balance;
+            } 
+        },
+        setAssetXASBalance(state,balance){
+            if(balance&&balance>=0){
+                state.assetXASBalance=balance;
+            } 
+        }
+    },
+    actions:{
+        setUser({commit},payload){
+            commit("setUser",payload)
+        },
+        setActive({commit},payload){
+            commit("setActive",payload)
+        },
+        setBalance({commit},payload){
+            commit("setBalance",payload)
+        },
+        setXASBalance({commit},payload){
+            commit("setXASBalance",payload)
+        },
+        setAssetBalance({commit},payload){
+            commit("setAssetBalance",payload)
+        },
+        setAssetXASBalance({commit},payload){
+            commit("setAssetXASBalance",payload)
+        },
+        logout({commit}){
+            commit("logout");
+        }
+    }
+});

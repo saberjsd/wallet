@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>dreamworld</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=6DRMtH6sHNBtNqCN6z5wA18UfzkESoRa"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-i18n/7.4.0/vue-i18n.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script>
+      var version = navigator.userAgent.toLowerCase();
+      var reg = /chrome\/[\d.]+/gi;
+      var result;
+      if (version.indexOf("chrome") > 0) {
+       //  result = version.match(reg);
+       //  version = (result + "").replace(/[^0-9]/ig, "");
+       //  if (Number(String(version).slice(0,2)) < 59) {
+       //      alert("您浏览器版本小于59，请升级到最新版本的chrome浏览器")
+       //  }
+      } else {
+          alert("请使用谷歌浏览器，否则登录,转账等操作可能会失败");
+      }
+     </script>
+  </body>
+</html>

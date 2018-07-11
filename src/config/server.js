@@ -1,7 +1,7 @@
 const api={
      dappId:"d14afe4b77487172be202e6d2d696012b51bf10c52c5e0903d9209e649d757c0",
      baseUrl:'http://47.91.223.85:8191',
-    //  baseUrl:'',
+    //baseUrl:'',
     //dappId:"2ef34add7fc61018835043ac9d4cb6aa1f61e916d6a986ea4c7e5fa4f8810939",
     //baseUrl:'http://192.168.1.15:4097',
     // dappId:"63863696d786c0b8d25af17d89c2f02e04376e616baf29a1195685e379954d79",
@@ -43,20 +43,4 @@ export default {
     cy:"dreamworld.DDC",
     //cy:"Dream.DDC",
     magic:magic_mainnet,
-
-
-    Map_Area_strokeColor:"red",
-    Map_Area_strokeColor_Cover:"blue",
-    Map_Area_strokeWeight:2,
-    Map_Area_strokeOpacity:0.5,
-
-    Map_Land_strokeColor:"red",
-    Map_Land_strokeColor_Cover:"blue",
-    Map_Land_strokeWeight:2,
-    Map_Land_strokeOpacity:0.2,
-    Map_land_Area_strokeColor:"blue",
-    Map_land_Area_strokeWeight:2,
-    Map_land_Area_strokeOpacity:0.1,
-    
-
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="loginwrap">
-      <div class="login">
+      <!-- <div class="login">
                 <div class="logo">
                   <div class="logoWrap">
                     <img width="190" height="190" src="../assets/ddclogo.png" />
@@ -32,42 +32,51 @@
   					:visible.sync="dialogVisible"
   					:before-close="handleClose">
 	                <el-form  :model="ruleForm3"
-								ref="ruleForm3" 
+								          ref="ruleForm3" 
                           status-icon 
                           label-position="top" 
                           class="dialog-ruleForm">
-                    <el-form-item :label="$t('message.Login_Lable_Secret')" prop="pass" label-width="160px">
-                        <el-input id="pass" type="textarea" :rows="3"  v-model="ruleForm3.pass" auto-complete="off"></el-input>
-						
-                    </el-form-item>
-					<p class="info">{{$t("message.Login_New_Info")}}</p>
+                          <el-form-item :label="$t('message.Login_Lable_Secret')" prop="pass" label-width="160px">
+                            <el-input id="pass" type="textarea" :rows="3"  v-model="ruleForm3.pass" auto-complete="off"></el-input>
+                          </el-form-item>
+					                  <p class="info">{{$t("message.Login_New_Info")}}</p>
 
-                     <el-form-item> 
-                        <el-button @click="toLogin()">{{$t("message.Login_Btn_Login1")}}</el-button>
-						<el-button @click="saveAndDown()">{{$t("message.Login_Btn_Save")}}</el-button>
-                     </el-form-item> 
-					</el-form>
-</el-dialog>
-    			
+                          <el-form-item> 
+                            <el-button @click="toLogin()">{{$t("message.Login_Btn_Login1")}}</el-button>
+						                <el-button @click="saveAndDown()">{{$t("message.Login_Btn_Save")}}</el-button>
+                          </el-form-item> 
+					          </el-form>
+        </el-dialog>
+      </div>           -->
+      <div class="login">
+        <div class="logo_img">
+          <img src="../assets/img/login_logo_mini.png"/>
+        </div>
+        <div class="logo_title">
+          <p>USO 钱包</p>
+        </div>
+        <div class="logo_right">
+          <img src="../assets/img/text_LOGIN.png"/>
+        </div>
 
-      </div>          
+      </div>
     </div>
 </template>
 <script>
 import Config from "../config/server";
 import Aschjs from "asch-js";
-import Mnemonic from 'bitcore-mnemonic';
+import Mnemonic from "bitcore-mnemonic";
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         var message = this.$t("message.error_secret");
         callback(new Error(message));
-      } else if(!Mnemonic.isValid(value)){
-          var message=this.$t("message.error_secret_notformat");
-          //var message="密码不符合规范";
-          callback(new Error(message));
-      }else {
+      } else if (!Mnemonic.isValid(value)) {
+        var message = this.$t("message.error_secret_notformat");
+        //var message="密码不符合规范";
+        callback(new Error(message));
+      } else {
         callback();
       }
     };
@@ -84,24 +93,23 @@ export default {
       },
       btnLoading: false,
       btnLoading2: false,
-	  dialogVisible: false,
-	  isSelect:false,
-		Link:Config.baseUrl
+      dialogVisible: false,
+      isSelect: false,
+      Link: Config.baseUrl
     };
   },
   methods: {
     handleClose(done) {
-
       if (!this.isSelect) {
-		  var t=this.$t("message.Login_Confirm")
+        var t = this.$t("message.Login_Confirm");
         this.$confirm(t)
           .then(_ => {
             done();
           })
           .catch(_ => {});
-      }else{
-		  done();
-	  }
+      } else {
+        done();
+      }
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
@@ -152,7 +160,7 @@ export default {
     //获取一个新账户
     getNewAccount() {
       var code = new Mnemonic(Mnemonic.Words.ENGLISH);
-      this.ruleForm3.pass =code.toString();
+      this.ruleForm3.pass = code.toString();
     },
     saveAndDown() {
       this.isSelect = true;
@@ -188,8 +196,40 @@ export default {
 </script>
 <style>
 .loginwrap{
-  /* //height: calc(100% - 80px); */
   margin-top: 15vh;
+  margin: 0px auto
+}
+.login{
+  width:650px;
+  height:500px;
+  margin: 0px auto;
+  background: url("../assets/img/login_1_bg.png") no-repeat;
+  position: relative;
+
+}
+.login .logo_img{
+    position: absolute;
+    height:57px;
+    width: 75px;
+    left: 10px;
+    top: 10px
+
+}
+.login .logo_img img{
+    height:57px;
+    width: 75px;
+}
+.login .logo_title{
+  position: absolute;
+  top: 10px;
+  left:77px;
+  height: 57px;
+  line-height: 57px;
+}
+
+/* .loginwrap {
+  /* //height: calc(100% - 80px); */
+  /* margin-top: 15vh;
 }
 .login {
   max-width: 580px;
@@ -200,58 +240,55 @@ export default {
   margin: 0 auto;
   position: relative;
   top: calc(50% - 200px);
-  
 }
 .logo {
-    text-align: center;
-    position: absolute;
-    margin-top: -100px;
-    margin-left: calc(50% - 100px);
-
+  text-align: center;
+  position: absolute;
+  margin-top: -100px;
+  margin-left: calc(50% - 100px);
 }
-.loginBtn{
+.loginBtn {
   background: #108787 !important;
   color: #fff;
   font-size: 20px;
-    height: 60px;
+  height: 60px;
 
   border-color: #108787 !important;
 }
-.newAccountBtn{
+.newAccountBtn {
   color: #108787 !important;
   font-size: 20px;
-    height: 60px;
+  height: 60px;
   border-color: #108787 !important;
 }
-.login .el-input__inner{
-  font-size:20px;
+.login .el-input__inner {
+  font-size: 20px;
   height: 60px;
   line-height: 60px;
-  
 }
-.login .el-input__inner:focus{
- border-color: #108787 !important;
+.login .el-input__inner:focus {
+  border-color: #108787 !important;
 }
-.login .demo-ruleForm{
+.login .demo-ruleForm {
   margin-top: 145px;
 }
-.dialog-ruleForm{
+.dialog-ruleForm {
   /* position:absolute; */
   /* margin-bottom:44px;
-  width: calc(100% - 88px); */
+  width: calc(100% - 88px); 
 }
-.login>h1{
-    text-align: center;
-    position: relative;
-    font-size: 36px;
-    color: #0e525c;
-    top: 90px;
+.login > h1 {
+  text-align: center;
+  position: relative;
+  font-size: 36px;
+  color: #0e525c;
+  top: 90px;
 }
-.login>h1  i {
-    font-style: normal !important;
-    font-size: 14px;
-    position: relative;
-    top: -15px;
+.login > h1 i {
+  font-style: normal !important;
+  font-size: 14px;
+  position: relative;
+  top: -15px;
 }
 .info {
   margin-bottom: 10px;
@@ -260,19 +297,18 @@ export default {
 .demo-ruleForm {
   text-align: left;
 }
-@media screen and (max-width:768px ){
-  .loginwrap{
+@media screen and (max-width: 768px) {
+  .loginwrap {
     margin-top: 0px;
   }
-  .login{
-      padding: 10px;
-      border-radius: 5px;
+  .login {
+    padding: 10px;
+    border-radius: 5px;
   }
-  .login .demo-ruleForm{
-    /* margin-top: 145px; */
-    bottom:10px;
+  .login .demo-ruleForm {
+    /* margin-top: 145px; 
+    bottom: 10px;
     width: calc(100% - 20px);
   }
-    
-}
+} */
 </style>

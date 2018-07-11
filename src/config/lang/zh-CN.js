@@ -22,7 +22,7 @@ export const message = {
     PerSonNav_Personal_Account: '我的账户',
     PerSonNav_Transaction: "转账",
     PersonNav_KongTou: "应用充值",
-    PersonMessage_Address: "地址",
+    PersonMessage_Address: "钱包地址",
     PersonMessage_Publick: "公钥",
     PersonMessage_Nickname: "昵称",
 

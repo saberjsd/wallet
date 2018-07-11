@@ -3,33 +3,25 @@
         <div class="Asset Section">
           <div class="infomation">
             <h4>资产信息</h4>
-            <p>ASSET INFORMATION</p>
           </div>
           <div class="system">
             <span class="height_icon"> 
               <img class="system_icon" src="../../../assets/images/images/高度.png"/>
             </span>
             <span class="height">{{$t("message.account_height")+":"+Height}}</span>
-            <!-- <span class="split">|</span>
-            <span class="time_icon">
-              <img class="system_icon" src="../../../assets/images/images/时间.png"/>
-            </span>
-            <span class="time">{{$t("message.account_height_time")+":"+timeShow}}</span> -->
           </div>
         </div>
         <div class="Address Section">
-          <span class="Address_icon">
+          <!-- <span class="Address_icon">
               <img class="system_icon" src="../../../assets/images/images/钱包.png"/>
-          </span>
-          <span class="add">
-            <i class="dot"></i>
-            {{$t("message.PersonMessage_Address")}}:{{user.address}}
-          </span>
-           <span class="btnSpan">
-            <el-button size="mini"  @click="dialogVisibleQRPri = true">私钥二维码</el-button>
-            <el-button size="mini"  @click="dialogVisibleQR = true">钱包二维码</el-button>
-
+          </span> -->
+          <div class="addW">
+            <span class="add">
+                {{$t("message.PersonMessage_Address")}}:{{user.address}}
             </span>
+            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQRPri = true">私钥二维码</el-button>
+            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQR = true">钱包二维码</el-button>
+          </div>
         </div>
         <el-row :gutter="20" class="Section">
           <el-col :span="ddcTableWidth.span" :xs="24">
@@ -43,9 +35,10 @@
 										:label="$t('message.account_table_currency')"
 										>
 										<template slot-scope="scope">
-                      <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
-                      <span class="dot dot_style_DDC"  v-else></span>
-                      <span>{{scope.row.currency}}</span>
+                      <!-- <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
+                      <span class="dot dot_style_DDC"  v-else></span> -->
+                      <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
+                      <span v-else class="USO-color">{{scope.row.currency}}</span>
                     </template>
 								</el-table-column>
 								<el-table-column
@@ -82,8 +75,8 @@
 										:label="$t('message.account_table_currency')"
 										>
                     <template slot-scope="scope">
-                      <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
-                      <span class="dot dot_style_DDC"  v-else></span>
+                      <!-- <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
+                      <span class="dot dot_style_DDC"  v-else></span> -->
                       <span>{{scope.row.currency}}</span>
                     </template>
 								  </el-table-column>
@@ -167,7 +160,7 @@
 						</el-form-item>
 						<el-form-item :label="$t('message.acount_form_title2')"  prop="currency">
 								<el-select v-model="form.currency" :placeholder="$t('message.acount_form_title2')">
-                  <el-option label="DDC" :value="Config.cy"></el-option>
+                  <el-option label="USO" :value="Config.cy"></el-option>
 									<el-option label="XAS" value="XAS"></el-option>
 								</el-select>
 						</el-form-item>
@@ -292,7 +285,7 @@ export default {
               );
             }
           } else {
-            var balance = this.Asset.DDC;
+            var balance = this.Asset.USO;
             if (value <= balance) {
               if (this.Asset.XAS >= 0.1) {
                 callback();
@@ -378,7 +371,7 @@ export default {
       Depose_btn_disable: false,
       Depose_timer: 15,
       Depose_time: 0,
-      Asset: { XAS: 0, DDC: 0 },
+      Asset: { XAS: 0, USO: 0 },
       AssetArray: [],
       AssetShow: false,
       Height: 0,
@@ -423,7 +416,7 @@ export default {
         }
       } else {
         var xasBalance = this.BanlanceObj.XAS;
-        var ddcBalance = this.BanlanceObj.DDC;
+        var ddcBalance = this.BanlanceObj.USO;
         if (xasBalance < 0.1) {
           var error = this.$t("message.account_form_error_WithDrawl_2");
           return { success: false, error: "XAS " + error };
@@ -481,7 +474,7 @@ export default {
           this.Asset.XAS - 0.1 > 0 ? this.Asset.XAS - 0.1 : this.Asset.XAS;
         this.DepositeForm.amount = parseFloat(amount.toFixed(8));
       } else {
-        this.DepositeForm.amount = this.Asset.DDC;
+        this.DepositeForm.amount = this.Asset.USO;
       }
     },
     getbalances() {
@@ -500,14 +493,14 @@ export default {
           console.log("data", data);
           if (data.success) {
             // var asset=[{currency:"XAS",balance:0},{currency:Config.cy}];
-            var asset = { XAS: 0, DDC: 0 };
+            var asset = { XAS: 0, USO: 0 };
             data.balances.map(item => {
               if (item.currency == "XAS") {
                 asset.XAS = Number(item.balance / 1e8);
                 this.$store.dispatch("setXASBalance", asset.XAS);
               } else if (item.currency == Config.cy) {
-                asset.DDC = Number(item.balance / 1e8);
-                this.$store.dispatch("setBalance", asset.DDC);
+                asset.USO = Number(item.balance / 1e8);
+                this.$store.dispatch("setBalance", asset.USO);
               }
               //item.balance = Number(item.balance / 1e8);
               //return item;
@@ -824,7 +817,7 @@ export default {
               //this.AssetArray.push({currency:"XAS",balance:this.Asset.XAS})
             }
             if (ddc.success) {
-              this.Asset.DDC = parseFloat(ddc.balance.balanceShow);
+              this.Asset.USO = parseFloat(ddc.balance.balanceShow);
               //this.AssetArray.push({currency:Config.cy,balance:this.Asset.DDC})
             }
             var arry = [];
@@ -865,20 +858,21 @@ export default {
 }
 .Asset {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   position: relative;
   overflow: hidden;
 }
 .Asset .infomation {
   color: #949bc7;
   float: left;
+  margin-bottom: 20px;
 }
 .Asset .infomation h4 {
-  font-size: 30px;
-}
-.Asset .infomation p {
-  font-size: 16px;
-  margin-top: 10px;
+  font-size: 28px;
+  color: #333;
+  line-height: 50px;
+  border-left: 6px solid #57c586;
+  padding-left: 10px;
 }
 .Asset .system {
   float: right;
@@ -894,9 +888,9 @@ export default {
   margin: 0 10px;
 }
 .Address {
-  min-height: 100px;
+  height: 60px;
   border-radius: 5px;
-  background: #536ff1;
+  background: #57c586;
   color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -909,16 +903,23 @@ export default {
 .Address .system_icon {
   margin-top: 5px;
 }
-.Address > span {
+.Address .addW{
+  width: 850px;
+  height: 60px;
+  margin: 0 auto;
+  line-height: 60px;
+}
+.Address .add{
+  font-size: 22px;
+  color: #fff;
+}
+.addW .add{
   float: left;
-  height: 100px;
-  line-height: 100px;
+  height: 60px;
+  line-height: 60px;
   letter-spacing: 2px;
   white-space: nowrap;
-}
-.Address .btnSpan {
-  line-height: unset;
-  width: 150px;
+  margin-right: 20px;
 }
 .btnSpan > button {
   /* dis */
@@ -932,7 +933,7 @@ export default {
 }
 .Wallet_Header {
   font-size: 18px;
-  color: #949bc7;
+  color: #666666;
 }
 .Wallet .el-button {
   font-size: 22px;
@@ -947,7 +948,11 @@ export default {
 }
 .myTable .el-table__header-wrapper .cell {
   font-size: 24px;
-  color: #3a4062;
+  color: #333333;
+  text-align: center;
+}
+.el-table--enable-row-transition .el-table__body td{
+  text-align: center;
 }
 .Trans .cell {
   font-size: 12px;
@@ -992,15 +997,11 @@ export default {
   border-radius: 5px;
   background: #fff;
 }
-.dot_style_XAS {
-  background: #22ca80;
-  position: relative;
-  top: -3px;
+.XAS-color {
+  color: #f9a527;
 }
-.dot_style_DDC {
-  background: #f34551;
-  position: relative;
-  top: -3px;
+.USO-color {
+  color: #6ddc9c;
 }
 .transition-box {
   min-height: 183px;
@@ -1036,8 +1037,6 @@ export default {
   }
   .Address_icon {
     display: none;
-  }
-  .Asset {
   }
   .Asset .infomation {
     display: block;

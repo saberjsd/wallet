@@ -28,10 +28,10 @@ export default {
   padding:0px;
   margin:0px;
 }
-::selection {
+/* ::selection {
 background:#6C6;
 color:#fff;
-}
+} */
 html,body{
   background: rgb( 244,247,249);
 }
@@ -42,7 +42,7 @@ a{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #656565;
   height: 100%;;
 }
 .Right{

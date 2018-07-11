@@ -75,8 +75,8 @@ export default {
         currency: ""
       },
       options: [
-        { value: "DDC", lable: "DDC" },
-        // { value: "XAS", lable: "XAS" }
+        { value: "USO", lable: "USO" },
+        { value: "XAS", lable: "XAS" }
         ],
       rules2: {
         address: [{ validator: checkAddress, trigger: "blur" }],
@@ -86,10 +86,10 @@ export default {
   },
   mounted() {
     console.log(this.$route.query.currency);
-    if (!this.$route.query.currency||this.$route.query.currency=="DDC") {
-      this.formInline.currency = "DDC";
+    if (!this.$route.query.currency||this.$route.query.currency=="USO") {
+      this.formInline.currency = "USO";
     }
-    this.formInline.currency = "DDC";
+    this.formInline.currency = "USO";
     // else if (this.$route.query.currency == "XAS") {
     //   this.formInline.currency = "XAS";
     // }
@@ -97,7 +97,7 @@ export default {
   },
   computed:{
     ddcbalance(){
-      if(this.formInline.currency=="DDC"){
+      if(this.formInline.currency=="USO"){
         return this.$store.state.balance;
       }else if(this.formInline.currency=="XAS"){
         return this.$store.state.xasBlance;
@@ -112,11 +112,11 @@ export default {
         return false;
       }
       var currency = this.formInline.currency || Config.cy;
-      if(currency=="DDC"){
+      if(currency=="USO"){
         currency=Config.cy;
       }
       var secret = this.$store.state.user.secret;
-      var type = 2005;
+      var type = 3;
       var amount = (this.formInline.amount * 1e8).toFixed(0);
       var fee = String(0.1 * 1e8);
       var address = this.formInline.address;
@@ -132,7 +132,7 @@ export default {
           },
           {
             headers: {
-              magic: "594fe0f3",
+              magic: Config.magic,
               version: ""
             }
           }

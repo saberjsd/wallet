@@ -20,7 +20,11 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item :label="$t('message.trs_form_field_amount')+'-----余额:'+ddcbalance" prop="amount" >
+            <!-- :label="$t('message.trs_form_field_amount')+'-----余额:'+ddcbalance" -->
+            <p class="form_label">{{$t('message.trs_form_field_amount')}} <span class="right">余额:{{ddcbalance}}</span></p>
+            <el-form-item 
+                prop="amount" 
+              >
                 <el-input v-model="formInline.amount"  :placeholder="'余额'+ddcbalance"></el-input>
             </el-form-item>
             <el-form-item>
@@ -178,6 +182,15 @@ export default {
 }
 .trsBtn,.el-select{
   transition: all .5s ease-in-out;
+}
+.form_label{
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+}
+.form_label .right{
+  text-align: right;
+  float: right;
 }
 @media screen and (max-width:768px ){
   .trs .el-select{

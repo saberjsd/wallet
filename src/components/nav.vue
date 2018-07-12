@@ -8,7 +8,7 @@
             <router-link class="menu-text" to="/person">{{$t("message.Nav_log")}}</router-link>
           </li>
           <li class="menu-account" style="margin-left:100px;" v-if="IsLogin" @click="toIndex()">
-            <span class="menu-icon"><img style="margin-top: 31px;" src='../assets/images/images/account.png'/></span>
+            <!-- <span class="menu-icon"><img style="margin-top: 31px;" src='../assets/images/images/account.png'/></span> -->
             <span class="menu-text">我的账户</span>
           </li>
           <!-- <li class="menu-asch" style="margin-left:80px;">
@@ -30,7 +30,7 @@
             </a>
           </li>
           <li class="menu-languge menu-right" style="margin-left:60px;" v-if="IsLogin" @click="logout()" >
-            <!-- <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/退出.png'/></span> -->
+            <i class="menu-icon logout"></i>
             <span class="menu-text">{{$t("message.NavLogOut")}}</span>
           </li>
           <!-- <li class="menu-login menu-right">
@@ -201,6 +201,19 @@ export default {
 }
 .navWrap .menu-logo .menu-icon{
   position: relative;
+}
+.logout{
+  font-style: normal;
+  /* display: inline-block; */
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin-top: 24px;
+  background: url('../assets/img/logout.png') no-repeat 0px center;
+}
+.menu-right:hover .logout{
+  background-position: -24px center;
+  color: #6ddc9c;
 }
 @media screen and (max-width:768px ){
 

@@ -994,7 +994,7 @@ export default {
   position: absolute;
   width: 20px;
   height: 120px;
-  top: 30px;
+  top: 50px;
   right: 26px;
   z-index: 99;
   font-size: 20px;

@@ -352,6 +352,7 @@ ${address}\n\r
 .login .ruleForm .el-input__inner{
   height: 80px;
   font-size: 40px;
+  padding-right: 30px;
 }
 .login .ruleForm .el-input:focus,
 .login .ruleForm .el-input__inner:focus
@@ -389,6 +390,15 @@ ${address}\n\r
   font-size: 16px;
     color: #999;
     margin-bottom: 10px;
+}
+.login .el-form-item{
+  margin-bottom: 35px;
+}
+.login .el-form-item__error{
+  font-size: 16px;
+}
+.login .el-input__suffix{
+  font-size: 20px;
 }
 /* .loginwrap {
   /* //height: calc(100% - 80px); */

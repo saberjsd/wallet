@@ -2,7 +2,7 @@
 		<div class="account">
         <div class="Asset Section">
           <div class="infomation">
-            <h4>资产信息</h4>
+            <h4>钱包信息</h4>
           </div>
           <div class="system">
             <span class="height_icon"> 
@@ -65,13 +65,13 @@
             <div class="Wallet">
               <p class="Wallet_Header">
                 <el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button>
-                <span v-show="AssetShow">阿希链资产</span>
+                <span v-show="AssetShow">阿希链</span>
               </p>
               <el-card class="transition-box">
                 <!-- <div class="toggleShow" v-if="AssetShow"  @click="toggle_balance('XAS')">
                   <img :src="showImg" alt="">
                 </div> -->
-                <span class="main-line" v-show="!AssetShow">阿希链资产</span>
+                <span class="main-line" v-show="!AssetShow">阿希链</span>
 
                 <transition-group name="el-fade-in" mode="out-in">
                   <el-table key="table" v-if="AssetShow" :data="AssetArray" class="myTable">
@@ -92,7 +92,7 @@
                         <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_Recharge")' placement="top-start">
                           <el-button  class="operation" @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark"  content='阿希链资产转账' placement="top-start">
+                        <el-tooltip class="item" effect="dark"  content='阿希链转账' placement="top-start">
                           <el-button  class="operation" @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
                         </el-tooltip>
                       </template>

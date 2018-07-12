@@ -9,7 +9,7 @@
           </li>
           <li class="menu-account" style="margin-left:100px;" v-if="IsLogin" @click="toIndex()">
             <!-- <span class="menu-icon"><img style="margin-top: 31px;" src='../assets/images/images/account.png'/></span> -->
-            <span class="menu-text">我的账户</span>
+            <span :class="{'menu-text':true,active:activeIndex2=='6'}"  >我的账户</span>
           </li>
           <!-- <li class="menu-asch" style="margin-left:80px;">
             <a :href="Link" target="blank">
@@ -177,6 +177,10 @@ export default {
 .navWrap ul>li .menu-text:hover{
   color: #57c586;
 }
+.navWrap ul>li .menu-text.active{
+  color: #57c586;
+}
+
 .navWrap>ul>li span{
   float: left;
   height: 70px;

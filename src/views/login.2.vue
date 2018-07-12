@@ -53,7 +53,7 @@
           <img src="../assets/img/login_logo_mini.png"/>
         </div>
         <div class="logo_title">
-          <p>USO 钱包</p>
+          <p>USO 在线钱包</p>
         </div>
         <div class="logo_right">
           <img src="../assets/img/text_LOGIN.png"/>

@@ -64,7 +64,7 @@
           <el-col :span="ddcTableWidth.xasspan" :xs="24">
             <div class="Wallet">
               <p class="Wallet_Header">
-                <el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button>
+                <el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'点击隐藏':'点击显示'}}</el-button>
                 <span v-show="AssetShow">阿希链</span>
               </p>
               <el-card class="transition-box">
@@ -132,14 +132,27 @@
               </el-table-column>
 								
 						</el-table>
-						<el-pagination
+
+						<!-- <el-pagination
             class="myPage"
 						@current-change="handleCurrentChange"
 						:current-page="pageIndex"
 						:page-size="10"
 						layout="total, prev, pager, next, jumper"
 						:total="TransationTotalCount">
-				    </el-pagination>
+				    </el-pagination> -->
+
+            <el-pagination class="myPage" @current-change="handleCurrentChange" :current-page.sync="pageIndex" :page-size="10" :pager-count="5"
+              layout="prev, pager, next, slot" :total="TransationTotalCount" background>
+              <template>
+                <div class="go-page">
+                  <span>跳转</span>
+                  <input type="text" v-model="goPage" @keydown.enter="go_page">
+                  <button @click="go_page">GO</button>
+                </div>
+              </template>
+            </el-pagination>
+
 				</el-card> 
       </div>
 
@@ -196,7 +209,7 @@
           :visible.sync="dialogVisibleQRPri">
           <div class="myQrBody">
             <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
-            <p style="text-align:center"> 密钥为登录钱包唯一凭证，请妥善保管，切勿分享</p>
+            <p style="text-align:center"> 密钥为登录在线钱包唯一凭证，请妥善保管，切勿分享</p>
           </div>
           
       </el-dialog>
@@ -375,7 +388,9 @@ export default {
 
       USOBalanceShow:false,
       XASBalanceShow:false,
-      showImg:'../../../assets/img/index_visible_2.png'
+      showImg:'../../../assets/img/index_visible_2.png',
+
+      goPage:'',
     };
   },
   mounted() {
@@ -598,6 +613,13 @@ export default {
       this.pageIndex = val;
       this.setTransactionArray();
     },
+    go_page(){
+      var page = parseInt(this.goPage)
+			if(!isNaN(page) && page>0){
+				this.pageIndex = page
+				this.setTransactionArray()
+			}
+		},
     getEpochTime(time) {
       if (time === undefined) {
         time = new Date().getTime();
@@ -1025,11 +1047,11 @@ export default {
 }
 .myPage button,
 .myPage span:not([class*="suffix"]) {
-  font-size: 22px;
+  font-size: 18px;
   /* color: #57c586; */
 }
 .myPage .el-pager li {
-  font-size: 22px;
+  font-size: 18px;
 }
 .myPage .el-pager li.active,
 .myPage .el-pager li:hover {
@@ -1078,6 +1100,24 @@ export default {
 .el-dialog__headerbtn {
   font-size: 35px;
 }
+
+.go-page{display: inline-block;color: #656565;height: 30px;width: 160px;margin-left: 15px;}
+.go-page span{float: left;font-weight: normal;}
+.go-page input{width: 60px;height: 25px;float: left;border-radius: 5px;border: 1px solid #6ddc9c;outline: none;background: transparent;
+color: #656565;text-align: center;margin-top: 0px;margin-left: 5px;}
+.go-page button{border-radius: 5px;float: right;margin-left: 10px;cursor: pointer;
+border:1px solid #57c586;color: #57c586;position: relative;top: -1px;}
+.go-page button:hover{
+  color: #57c586;
+}
+.Trans .el-pagination.is-background .el-pager li:not(.disabled).active{
+  background-color: #57c586;
+}
+.Trans .el-pagination.is-background .el-pager li:not(.disabled):hover{
+  color: #57c586;
+}
+
+
 @media screen and (max-width: 768px) {
   .Address .add {
     font-size: 12px;
@@ -1114,6 +1154,7 @@ export default {
   }
   .myQr img {
     width: 80%;
+    min-height: 205px;
   }
   .Address .btnSpan {
     line-height: unset;

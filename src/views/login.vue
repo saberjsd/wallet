@@ -65,7 +65,7 @@
           <p>欢迎回来</p>
         </div>
         <div class="logo_please">
-          <p>请在下方登录您的钱包</p>
+          <p>请在下方登录您的在线钱包</p>
         </div>
           <el-form  @submit.native="submitForm('ruleForm2')" :model="ruleForm2" status-icon :rules="rules2" label-position="top" ref="ruleForm2"  class="ruleForm">
                     <el-form-item 

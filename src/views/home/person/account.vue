@@ -28,72 +28,63 @@
             <div class="Wallet">
               <p class="Wallet_Header">{{$t("message.account_card_asset")}}</p>
               <el-card>
+                <div class="toggleShow">
+                  <span></span>
+                </div>
 								<el-table :data="BanlanceArray" class="myTable">
-								 <el-table-column
-										prop="currency"
-                    
-										:label="$t('message.account_table_currency')"
-										>
+								 <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50px">
 										<template slot-scope="scope">
-                      <!-- <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
-                      <span class="dot dot_style_DDC"  v-else></span> -->
                       <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
                       <span v-else class="USO-color">{{scope.row.currency}}</span>
                     </template>
 								</el-table-column>
-								<el-table-column
-										prop="balance"
-										 :label="$t('message.account_table_balance')"
-										>
+								<el-table-column prop="balance" :label="$t('message.account_table_balance')"  min-width="80px">
+                    <template slot-scope="scope">
+                      <span class="balance-style">{{scope.row.balance}}</span>
+                    </template>
 								</el-table-column>
-								<el-table-column
-                
-										 :label="$t('message.account_table_operation')">
+								<el-table-column :label="$t('message.account_table_operation')" min-width="150px">
 										<template slot-scope="scope">
-													<el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_withDraw")' placement="top-start">
-														<el-button @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
-													</el-tooltip>
-													 <el-tooltip v-if="scope.row.currency!='XAS'" class="item" effect="dark" :content='$t("message.account_tooltip_trans")' placement="top-start">
-														 <el-button @click="$router.push({name:'Trans',query:{currency:scope.row.currency}})" type="text" size="mini">{{$t("message.account_table_t_oper_2")}}</el-button>
-													</el-tooltip>
+                        <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_withDraw")' placement="top-start">
+                          <el-button class="operation" @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
+                        </el-tooltip>
+                          <el-tooltip v-if="scope.row.currency!='XAS'" class="item" effect="dark" :content='$t("message.account_tooltip_trans")' placement="top-start">
+                            <el-button  class="operation" @click="$router.push({name:'Trans',query:{currency:scope.row.currency}})" type="text" size="mini">{{$t("message.account_table_t_oper_2")}}</el-button>
+                        </el-tooltip>
 										</template>
 								</el-table-column>
 								</el-table>
               </el-card>
             </div>
           </el-col>
+
           <el-col :span="ddcTableWidth.xasspan" :xs="24">
             <div class="Wallet">
-              <p class="Wallet_Header">{{$t("message.account_card_assetB")}} <el-button class="HideAssetBtn"  type="text" @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button></p>
+              <p class="Wallet_Header"><el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button></p>
               <el-card class="transition-box">
                 <transition-group name="el-fade-in" mode="out-in">
                   <!-- <el-button key="button" class="ShowAssetBtn" v-if="!AssetShow" type="text" @click="showAsset()">点击展开</el-button> -->
                 <el-table key="table" v-if="AssetShow" :data="AssetArray" class="myTable">
-								  <el-table-column
-										prop="currency"
-                    width="100"
-										:label="$t('message.account_table_currency')"
-										>
+								  <el-table-column prop="currency" width="100" :label="$t('message.account_table_currency')">
                     <template slot-scope="scope">
-                      <!-- <span class="dot dot_style_XAS"  v-if="scope.row.currency=='XAS'"></span>
-                      <span class="dot dot_style_DDC"  v-else></span> -->
-                      <span>{{scope.row.currency}}</span>
+                      <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
+                      <span v-else class="USO-color">{{scope.row.currency}}</span>
                     </template>
 								  </el-table-column>
-								  <el-table-column
-										prop="balance"
-										 :label="$t('message.account_table_balance')"
-										>
+								  <el-table-column prop="balance" :label="$t('message.account_table_balance')">
+                    <template slot-scope="scope">
+                      <span class="balance-style">{{scope.row.balance}}</span>
+                    </template>
 								  </el-table-column>
 								  <el-table-column
                     width="150"
 										 :label="$t('message.account_table_operation')">
 										<template slot-scope="scope">
 											<el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_Recharge")' placement="top-start">
-												<el-button @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
+												<el-button  class="operation" @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
                       </el-tooltip>
                       <el-tooltip class="item" effect="dark"  content='主链资产转账' placement="top-start">
-												<el-button  @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
+												<el-button  class="operation" @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
                       </el-tooltip>
                       
 										</template>
@@ -104,10 +95,12 @@
             </div>
           </el-col>
         </el-row>
+
+
         <div class="Trans Section">
           <div class="header"> 
             <h4>交易信息</h4>
-            <p>TRANSACTION INFORMATION</p>
+            <!-- <p>TRANSACTION INFORMATION</p> -->
           </div>
           <el-card class="box-card">
 					  <el-table :data="TransationArray" class="myTable" 	v-loading="loading">
@@ -433,7 +426,7 @@ export default {
         //展开状态
         return { span: 12, xasspan: 12 };
       } else {
-        return { span: 20, xasspan: 4 };
+        return { span: 22, xasspan: 2};
       }
     }
   },
@@ -867,7 +860,7 @@ export default {
   float: left;
   margin-bottom: 20px;
 }
-.Asset .infomation h4 {
+.Asset .infomation h4,.Trans .header h4 {
   font-size: 28px;
   color: #333;
   line-height: 50px;
@@ -932,8 +925,12 @@ export default {
   margin-bottom: 10px;
 }
 .Wallet_Header {
+  line-height: 21px;
   font-size: 18px;
   color: #666666;
+}
+.Wallet_Header button{
+  padding: 2px 5px;
 }
 .Wallet .el-button {
   font-size: 22px;
@@ -960,16 +957,13 @@ export default {
 .Trans .header {
   margin-top: 10px;
 }
-.Trans .header h4 {
-  font-size: 30px;
-  color: #949bc7;
-}
+
 .Trans .header p {
   font-size: 16px;
   color: #949bc7;
 }
 .Trans .el-table__header-wrapper {
-  border-bottom: 2px solid #536ff1;
+  border-bottom: 1px solid #57c586;
 }
 .Trans {
   margin-bottom: 40px;
@@ -990,12 +984,9 @@ export default {
 .myPage .el-pager li:hover {
   color: #536ff1;
 }
-.dot {
-  display: inline-block;
-  height: 10px;
-  width: 10px;
-  border-radius: 5px;
-  background: #fff;
+.balance-style{
+  font-size: 18px;
+  color: #656565;
 }
 .XAS-color {
   color: #f9a527;
@@ -1003,19 +994,28 @@ export default {
 .USO-color {
   color: #6ddc9c;
 }
+.operation span{
+  color: #1691b6;
+}
+
+
 .transition-box {
   min-height: 183px;
-  /* line-height: 150px; */
-  /* text-align: center; */
 }
 .ShowAssetBtn {
   margin-top: 44px;
   margin-left: calc(50% - 44px);
 }
 .HideAssetBtn {
-  padding: 0px !important;
+  /* padding: 0px !important; */
+  /* background:  */
+  border-color: #57c586 !important;
   font-size: 16px !important;
-  color: #536ff1 !important;
+  color: #57c586 !important;
+}
+.HideAssetBtn:hover{
+  border-color: #43df86 !important;
+  color: #57c586 !important;
 }
 .myQr {
   text-align: center;

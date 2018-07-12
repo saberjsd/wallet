@@ -1,6 +1,6 @@
 <template>
     <div class="loginwrap">
-      <div class="login">
+      <!-- <div class="login">
                 <div class="logo">
                   <div class="logoWrap">
                     <img width="190" height="190" src="../assets/ddclogo.png" />
@@ -47,7 +47,7 @@
                           </el-form-item> 
 					          </el-form>
         </el-dialog>
-      </div>          
+      </div>           -->
       <div class="login">
         <div class="logo_img">
           <img src="../assets/img/login_logo_mini.png"/>
@@ -227,9 +227,9 @@ export default {
   line-height: 57px;
 }
 
-.loginwrap {
-  height: calc(100% - 80px);
- margin-top: 15vh;
+/* .loginwrap {
+  /* //height: calc(100% - 80px); */
+  /* margin-top: 15vh;
 }
 .login {
   max-width: 580px;
@@ -274,7 +274,7 @@ export default {
 }
 .dialog-ruleForm {
   /* position:absolute; */
-  margin-bottom:44px;
+  /* margin-bottom:44px;
   width: calc(100% - 88px); 
 }
 .login > h1 {
@@ -306,9 +306,9 @@ export default {
     border-radius: 5px;
   }
   .login .demo-ruleForm {
-    margin-top: 145px; 
+    /* margin-top: 145px; 
     bottom: 10px;
     width: calc(100% - 20px);
   }
-}
+} */
 </style>

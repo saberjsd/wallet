@@ -210,6 +210,9 @@ export default {
       this.isReg=!this.isReg
     },
     toLogin() {
+      var Url2 = document.getElementById("pass");
+      Url2.select(); // 选择对象
+      document.execCommand("Copy");
       this.resetForm("ruleForm3")
       this.isReg=!this.isReg;
       setTimeout(()=>{
@@ -276,27 +279,37 @@ ${address}\n\r
 .loginwrap{
   margin: 0px auto;
   position: relative;
-    padding-top: 225px;
-}
-.loginTop{
-    position: absolute;
-    top: 50px;
-    left: calc(50% - 568px);
-}
-.login{
-  width:650px;
-  height:500px;
-  /* margin: 0px auto; */
-  background: url("../assets/img/login_1_bg.png") no-repeat ;
-  background-color: #fff;
-  position: relative;
-  box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  position: absolute;
+    padding-top: 200px;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -325px;
-  margin-top: -250px;
+  margin-top: -250px;  */
+}
+.loginTop{
+    position: absolute;
+    top: 48px;
+    left: calc(50% - 540px);
+}
+.login{
+  /* width:650px;
+  height:500px;
+   margin: 0px auto; 
+  background: url("../assets/img/login_1_bg.png") no-repeat ;
+  background-color: #fff;
+  box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;*/
+  
+
+   width:650px;
+  height:500px;
+  margin: 0px auto;
+  background: url("../assets/img/login_1_bg.png") no-repeat ;
+  background-color: transparent;
+  position: relative;
+  box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
 
 }
 .login .logo_img{

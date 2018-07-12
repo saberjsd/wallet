@@ -1,12 +1,15 @@
 <template>
-    <div class="person">
-        <NavBar></NavBar>
+    <div>
+      <NavBar></NavBar>
+      <div class="person">
         <div class="main">
           <transition name="fold">
             <router-view></router-view>
           </transition>
         </div>
     </div>
+    </div>
+    
 </template>
 <script>
 import NavBar from "../../components/nav" 

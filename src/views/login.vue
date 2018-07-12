@@ -68,7 +68,7 @@
                     <el-form-item 
                       prop="pass" 
                       label-width="160px"
-                      label="请输入主密钥（12个助记词）"
+                      label="请输入主密钥（12位助记词）"
                       >
                         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
                     </el-form-item>
@@ -274,16 +274,19 @@ ${address}\n\r
   margin: 0px auto;
 }
 .login{
-  
   width:650px;
   height:500px;
-  margin: 0px auto;
+  /* margin: 0px auto; */
   background: url("../assets/img/login_1_bg.png") no-repeat ;
   background-color: #fff;
   position: relative;
   box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-top: 225px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -325px;
+  margin-top: -250px;
 }
 .login .logo_img{
     position: absolute;
@@ -340,6 +343,7 @@ ${address}\n\r
 .login .ruleForm .el-input__inner{
   height: 80px;
   font-size: 40px;
+  padding-right: 35px;
 }
 .login .ruleForm .el-input:focus,
 .login .ruleForm .el-input__inner:focus
@@ -377,6 +381,16 @@ ${address}\n\r
   font-size: 16px;
     color: #999;
     margin-bottom: 10px;
+}
+
+.login .el-form-item__error{
+  font-size: 18px;
+}
+.login .el-form-item{
+  margin-bottom: 35px;
+}
+.login .el-input__suffix{
+  font-size: 20px;
 }
 /* .loginwrap {
   /* //height: calc(100% - 80px); */

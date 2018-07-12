@@ -28,31 +28,34 @@
             <div class="Wallet">
               <p class="Wallet_Header">{{$t("message.account_card_asset")}}</p>
               <el-card>
-                <div class="toggleShow">
-                  <span></span>
-                </div>
+                <!-- <div class="toggleShow" @click="toggle_balance('USO')">
+                  <img :src="showImg" alt="">
+                </div> -->
+
 								<el-table :data="BanlanceArray" class="myTable">
-								 <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50px">
-										<template slot-scope="scope">
-                      <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
-                      <span v-else class="USO-color">{{scope.row.currency}}</span>
-                    </template>
-								</el-table-column>
-								<el-table-column prop="balance" :label="$t('message.account_table_balance')"  min-width="80px">
-                    <template slot-scope="scope">
-                      <span class="balance-style">{{scope.row.balance}}</span>
-                    </template>
-								</el-table-column>
-								<el-table-column :label="$t('message.account_table_operation')" min-width="150px">
-										<template slot-scope="scope">
-                        <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_withDraw")' placement="top-start">
-                          <el-button class="operation" @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
-                        </el-tooltip>
-                          <el-tooltip v-if="scope.row.currency!='XAS'" class="item" effect="dark" :content='$t("message.account_tooltip_trans")' placement="top-start">
-                            <el-button  class="operation" @click="$router.push({name:'Trans',query:{currency:scope.row.currency}})" type="text" size="mini">{{$t("message.account_table_t_oper_2")}}</el-button>
-                        </el-tooltip>
-										</template>
-								</el-table-column>
+                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50">
+                        <template slot-scope="scope">
+                          <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
+                          <span v-else class="USO-color">{{scope.row.currency}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="balance" :label="$t('message.account_table_balance')"  min-width="80">
+                        <template slot-scope="scope">
+                          <!-- <span v-if="!USOBalanceShow">********</span> -->
+                          <span class="balance-style">{{scope.row.balance}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column :label="$t('message.account_table_operation')" min-width="150">
+                        <template slot-scope="scope">
+                            <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_withDraw")' placement="top-start">
+                              <el-button class="operation" @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
+                            </el-tooltip>
+                              <el-tooltip v-if="scope.row.currency!='XAS'" class="item" effect="dark" :content='$t("message.account_tooltip_trans")' placement="top-start">
+                                <el-button  class="operation" @click="$router.push({name:'Trans',query:{currency:scope.row.currency}})" type="text" size="mini">{{$t("message.account_table_t_oper_2")}}</el-button>
+                            </el-tooltip>
+                        </template>
+                    </el-table-column>
+
 								</el-table>
               </el-card>
             </div>
@@ -60,36 +63,41 @@
 
           <el-col :span="ddcTableWidth.xasspan" :xs="24">
             <div class="Wallet">
-              <p class="Wallet_Header"><el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button></p>
+              <p class="Wallet_Header">
+                <el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'隐藏':'显示'}}</el-button>
+                <span v-show="AssetShow">阿希链资产</span>
+              </p>
               <el-card class="transition-box">
+                <!-- <div class="toggleShow" v-if="AssetShow"  @click="toggle_balance('XAS')">
+                  <img :src="showImg" alt="">
+                </div> -->
+                <span class="main-line" v-show="!AssetShow">阿希链资产</span>
+
                 <transition-group name="el-fade-in" mode="out-in">
-                  <!-- <el-button key="button" class="ShowAssetBtn" v-if="!AssetShow" type="text" @click="showAsset()">点击展开</el-button> -->
-                <el-table key="table" v-if="AssetShow" :data="AssetArray" class="myTable">
-								  <el-table-column prop="currency" width="100" :label="$t('message.account_table_currency')">
-                    <template slot-scope="scope">
-                      <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
-                      <span v-else class="USO-color">{{scope.row.currency}}</span>
-                    </template>
-								  </el-table-column>
-								  <el-table-column prop="balance" :label="$t('message.account_table_balance')">
-                    <template slot-scope="scope">
-                      <span class="balance-style">{{scope.row.balance}}</span>
-                    </template>
-								  </el-table-column>
-								  <el-table-column
-                    width="150"
-										 :label="$t('message.account_table_operation')">
-										<template slot-scope="scope">
-											<el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_Recharge")' placement="top-start">
-												<el-button  class="operation" @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
-                      </el-tooltip>
-                      <el-tooltip class="item" effect="dark"  content='主链资产转账' placement="top-start">
-												<el-button  class="operation" @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
-                      </el-tooltip>
-                      
-										</template>
-								  </el-table-column>
-								</el-table>
+                  <el-table key="table" v-if="AssetShow" :data="AssetArray" class="myTable">
+                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50">
+                      <template slot-scope="scope">
+                        <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
+                        <span v-else class="USO-color">{{scope.row.currency}}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column prop="balance" :label="$t('message.account_table_balance')" min-width="80">
+                      <template slot-scope="scope">
+                        <!-- <span v-if="!XASBalanceShow">********</span> -->
+                        <span class="balance-style">{{scope.row.balance}}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column min-width="150" :label="$t('message.account_table_operation')">
+                      <template slot-scope="scope">
+                        <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_Recharge")' placement="top-start">
+                          <el-button  class="operation" @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
+                        </el-tooltip>
+                        <el-tooltip class="item" effect="dark"  content='主链资产转账' placement="top-start">
+                          <el-button  class="operation" @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
+                        </el-tooltip>
+                      </template>
+                    </el-table-column>
+                  </el-table>
                 </transition-group>
               </el-card>
             </div>
@@ -104,39 +112,30 @@
           </div>
           <el-card class="box-card">
 					  <el-table :data="TransationArray" class="myTable" 	v-loading="loading">
-								 <el-table-column
-										prop="senderId"
-										width="290"
-										:label="$t('message.account_table_senderId')"
-										>
-								</el-table-column>
-								<el-table-column
-										prop="time"
-										:label="$t('message.account_table_time')"
-										>
-								</el-table-column>
-								<el-table-column
-										prop="amounts"
-										:label="$t('message.account_table_amounts')"
-										>
-								</el-table-column>
-								<el-table-column
-										prop="recipientId"
-										width="290"
-										:label="$t('message.account_table_recipientId')"
-										>
-								</el-table-column>
-								<el-table-column
-										prop="type"
-										:label="$t('message.account_table_t_type')"
-										>
-								</el-table-column>
+              <el-table-column prop="type" :label="$t('message.account_table_t_type')">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.senderId.indexOf('我')> -1" style="color:red;">{{scope.row.type}}</span>
+                  <span v-else style="color:#02cd1a;">{{scope.row.type}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="senderId" min-width="180" :label="$t('message.account_table_senderId')">
+              </el-table-column>
+              <el-table-column prop="recipientId" min-width="180" :label="$t('message.account_table_recipientId')">
+              </el-table-column>
+              <el-table-column prop="amounts" :label="$t('message.account_table_amounts')">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.amounts.indexOf('USO')> -1" class="USO-color">{{scope.row.amounts}}</span>
+                  <span v-else class="XAS-color">{{scope.row.amounts}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="time" min-width="100" :label="$t('message.account_table_time')">
+              </el-table-column>
+								
 						</el-table>
 						<el-pagination
             class="myPage"
 						@current-change="handleCurrentChange"
 						:current-page="pageIndex"
-
 						:page-size="10"
 						layout="total, prev, pager, next, jumper"
 						:total="TransationTotalCount">
@@ -188,7 +187,7 @@
       <el-dialog
           :visible.sync="dialogVisibleQR">
           <div class="myQrBody">
-            <vue-qr :text="user.address"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#1e82c0"></vue-qr>
+            <vue-qr :text="user.address"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
             <p style="text-align:center"> 钱包地址</p>
           </div>
           
@@ -196,7 +195,7 @@
             <el-dialog
           :visible.sync="dialogVisibleQRPri">
           <div class="myQrBody">
-            <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#1e82c0"></vue-qr>
+            <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
             <p style="text-align:center"> 私钥为登录钱包唯一凭证，请妥善保管，切勿分享</p>
           </div>
           
@@ -372,7 +371,11 @@ export default {
 
       dialogVisibleQR: false,
       dialogVisibleQRPri: false,
-      logoSrc:require("../../../assets/qrcode.png")
+      logoSrc:require("../../../assets/qrcode.png"),
+
+      USOBalanceShow:false,
+      XASBalanceShow:false,
+      showImg:'../../../assets/img/index_visible_2.png'
     };
   },
   mounted() {
@@ -841,6 +844,23 @@ export default {
         .catch(error => {
           console.error(error);
         });
+    },
+    toggle_balance(type){
+      if(type=='USO'){
+        this.USOBalanceShow = !this.USOBalanceShow
+        if(this.USOBalanceShow){
+          this.showImg = '../../../assets/img/index_visible_2.png'
+        }else{
+          this.showImg = '../../../assets/img/index_invisible_2.png'
+        }
+      }else if(type=='XAS'){
+        this.XASBalanceShow = !this.XASBalanceShow
+        if(this.XASBalanceShow){
+          this.showImg = '../../../assets/img/index_visible_2.png'
+        }else{
+          this.showImg = '../../../assets/img/index_invisible_2.png'
+        }
+      }
     }
   }
 };
@@ -940,6 +960,7 @@ export default {
   font-size: 22px;
   color: #3a4062;
 }
+
 .Section .el-card__body {
   padding: 10px 0 0 0;
 }
@@ -951,8 +972,37 @@ export default {
 .el-table--enable-row-transition .el-table__body td{
   text-align: center;
 }
+.Section .el-card{
+  position: relative;
+}
+.toggleShow{
+  position: absolute;
+  width: 30px;
+  height: 22px;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  cursor: pointer;
+}
+.toggleShow img{
+  display: inline-block;
+  width: 30px;
+  height: 21px;
+}
+.main-line{
+  position: absolute;
+  width: 20px;
+  height: 120px;
+  top: 30px;
+  right: 26px;
+  z-index: 99;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+
 .Trans .cell {
-  font-size: 12px;
+  font-size: 14px;
 }
 .Trans .header {
   margin-top: 10px;
@@ -975,14 +1025,14 @@ export default {
 .myPage button,
 .myPage span:not([class*="suffix"]) {
   font-size: 22px;
-  columns: #3a4062;
+  /* color: #57c586; */
 }
 .myPage .el-pager li {
   font-size: 22px;
 }
 .myPage .el-pager li.active,
 .myPage .el-pager li:hover {
-  color: #536ff1;
+  color: #57c586;
 }
 .balance-style{
   font-size: 18px;
@@ -998,6 +1048,10 @@ export default {
   color: #1691b6;
 }
 
+
+.myQrBody{
+  min-height: 200px;
+}
 
 .transition-box {
   min-height: 183px;

@@ -1,6 +1,6 @@
 <template>
     <div class="uiaTrans">
-        <h3>主链资产转账</h3>
+        <h3>阿希链转账</h3>
         <el-form  :model="formInline" :rules="rules2" ref="form" label-position="top" class="demo-form-inline">
             <el-form-item label="地址" prop="address" >
                 <el-input v-model="formInline.address" placeholder="地址"></el-input>
@@ -8,7 +8,7 @@
             <el-form-item v-if="isSecond" label="二级密钥" prop="secondSecret" >
                 <el-input type="password" v-model="formInline.secondSecret" placeholder="二级密钥"></el-input>
             </el-form-item> 
-            <el-form-item label="资产" >
+            <el-form-item label="币种" >
                 <el-select v-model="formInline.currency" :placeholder="$t('message.acount_form_title2')" @change="SelectonChange">
                     <el-option v-if="uia.length==0"></el-option>
                     <el-option v-else v-for="(item,index) in uia" :key="index" :label="item.currency" :value="item.currency"></el-option>

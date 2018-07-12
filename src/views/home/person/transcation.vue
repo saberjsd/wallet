@@ -11,7 +11,6 @@
                 <el-input v-model="formInline.address" :placeholder="$t('message.trs_form_input_placeholder')"></el-input>
             </el-form-item>
             <el-form-item :label="$t('message.trs_form_field_currency')" prop="currency" >
-                <!-- <el-input v-model="formInline.currency" placeholder="资产"></el-input> -->
                 <el-select v-model="formInline.currency" :placeholder="$t('message.trs_form_input_2_placeholder')">
                     <el-option
                         v-for="item in options"

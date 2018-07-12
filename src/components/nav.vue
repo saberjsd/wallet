@@ -4,7 +4,8 @@
         <ul>
           <li class="menu-logo">
             <span class="menu-icon"><img style="margin-top:10px;" src='../assets/img/index_logo.png'/></span>
-            <span class="menu-text">{{$t("message.Nav_log")}}</span>
+            <!-- <span class="menu-text">{{$t("message.Nav_log")}}</span> -->
+            <router-link class="menu-text" to="/person">{{$t("message.Nav_log")}}</router-link>
           </li>
           <li class="menu-account" style="margin-left:100px;" v-if="IsLogin" @click="toIndex()">
             <span class="menu-icon"><img style="margin-top: 31px;" src='../assets/images/images/account.png'/></span>
@@ -166,10 +167,14 @@ export default {
 
 }
 .navWrap>ul>li:hover span{
-  color: #57c586;;
+  color: #57c586;
 }
 .navWrap ul>li .menu-text{
+  display: inline-block;
   padding-left: 8px;
+}
+.navWrap ul>li .menu-text:hover{
+  color: #57c586;
 }
 .navWrap>ul>li span{
   float: left;

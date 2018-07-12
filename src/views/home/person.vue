@@ -78,9 +78,6 @@ a:active,a:link,a:visited {
 i.el-icon-menu{
   color: #909399
 }
-.mymenue{
-  
-}
 @media screen and (max-width:768px ){
   .person{
     max-width: 748px;

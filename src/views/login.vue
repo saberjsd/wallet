@@ -292,15 +292,12 @@ ${address}\n\r
   position: relative;
   box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-<<<<<<< HEAD
   position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -325px;
   margin-top: -250px;
-=======
 
->>>>>>> 133f1fb6449f6495b0b731fa57d77b8ebd6f9524
 }
 .login .logo_img{
     position: absolute;

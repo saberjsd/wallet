@@ -19,8 +19,8 @@
             <span class="add">
                 {{$t("message.PersonMessage_Address")}}:{{user.address}}
             </span>
-            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQRPri = true">私钥二维码</el-button>
-            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQR = true">钱包二维码</el-button>
+            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQRPri = true">密钥二维码</el-button>
+            <el-button class="btnSpan" size="mini"  @click="dialogVisibleQR = true">地址二维码</el-button>
           </div>
         </div>
         <el-row :gutter="20" class="Section">
@@ -196,7 +196,7 @@
           :visible.sync="dialogVisibleQRPri">
           <div class="myQrBody">
             <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
-            <p style="text-align:center"> 私钥为登录钱包唯一凭证，请妥善保管，切勿分享</p>
+            <p style="text-align:center"> 密钥为登录钱包唯一凭证，请妥善保管，切勿分享</p>
           </div>
           
       </el-dialog>

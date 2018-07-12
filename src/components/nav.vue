@@ -3,7 +3,7 @@
       <div class="navWrap">
         <ul>
           <li class="menu-logo">
-            <span class="menu-icon"><img style="margin-top:10px;" src='../assets/img/index_logo.png'/></span>
+            <span class="menu-icon"><img style="margin-top:11px;" src='../assets/img/index_logo.png'/></span>
             <!-- <span class="menu-text">{{$t("message.Nav_log")}}</span> -->
             <router-link class="menu-text" to="/person">{{$t("message.Nav_log")}}</router-link>
           </li>
@@ -155,7 +155,7 @@ export default {
 .navWrap>ul>li{
   height: 100%;
   color: #282828;
-  line-height: 70px;
+  /* line-height: 70px; */
   float: left;
   cursor: pointer;
   transition: all .5s ease-in-out;
@@ -172,6 +172,7 @@ export default {
 .navWrap ul>li .menu-text{
   display: inline-block;
   padding-left: 8px;
+  line-height: 70px;
 }
 .navWrap ul>li .menu-text:hover{
   color: #57c586;

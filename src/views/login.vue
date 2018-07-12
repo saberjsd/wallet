@@ -212,8 +212,8 @@ export default {
     toLogin() {      
       var Url2 = document.getElementById("pass");
       Url2.select(); // 选择对象
-      document.execCommand("Copy");      t
-      his.resetForm("ruleForm3")      
+      document.execCommand("Copy");
+      this.resetForm("ruleForm3")      
       this.isReg=!this.isReg;
       setTimeout(()=>{
         this.resetForm("ruleForm2")

@@ -1,5 +1,8 @@
 <template>
     <div class="loginwrap">
+      <div class="loginTop">
+        <img src="../assets/img/login_logo_bg.png"/>
+      </div>
       <!-- <div class="login">
                 <div class="logo">
                   <div class="logoWrap">
@@ -272,6 +275,13 @@ ${address}\n\r
 <style>
 .loginwrap{
   margin: 0px auto;
+  position: relative;
+    padding-top: 225px;
+}
+.loginTop{
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 568px);
 }
 .login{
   
@@ -283,7 +293,7 @@ ${address}\n\r
   position: relative;
   box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-top: 225px;
+
 }
 .login .logo_img{
     position: absolute;

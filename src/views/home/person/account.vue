@@ -92,7 +92,7 @@
                         <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_Recharge")' placement="top-start">
                           <el-button  class="operation" @click="showDeposeDialog(scope.row.currency)" type="text" size="mini">{{$t("message.account_table_t_oper_3")}}</el-button>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark"  content='主链资产转账' placement="top-start">
+                        <el-tooltip class="item" effect="dark"  content='阿希链资产转账' placement="top-start">
                           <el-button  class="operation" @click="$router.push({name:'uiaTrans',query:{cy:scope.row.currency}})" type="text" size="mini">转账</el-button>
                         </el-tooltip>
                       </template>

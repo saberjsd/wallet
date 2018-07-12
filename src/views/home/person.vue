@@ -1,5 +1,6 @@
 <template>
     <div class="person">
+        <NavBar></NavBar>
         <div class="main">
           <transition name="fold">
             <router-view></router-view>
@@ -8,7 +9,11 @@
     </div>
 </template>
 <script>
-export default {
+import NavBar from "../../components/nav" 
+export default {  
+  components:{
+    NavBar
+  },
   data() {
     return {};
   },

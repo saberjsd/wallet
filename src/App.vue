@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
+    <!-- <NavBar></NavBar> -->
     <transition name="fold">
           <router-view/>
     </transition>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import NavBar from "./components/nav" 
+// import NavBar from "./components/nav" 
 import  Config from './config/server'
 export default {
   name: 'App',
-  components:{
-    NavBar
-  },
+  // components:{
+  //   NavBar
+  // },
   data(){
     return {
       Link:Config.baseUrl

@@ -76,7 +76,7 @@ export const message = {
     trs_form_input_placeholder: "请输入地址",
     trs_form_field_currency: "币种",
     trs_form_input_2_placeholder: "请选择币种",
-    trs_form_field_amount: "金额(手续费 0.1 ubiquity.USO)",
+    trs_form_field_amount: "金额(手续费 0.1 USO)",
     trs_form_input_3_placeholder: "请输入金额",
     trs_form_btn: "转账",
     trs_error_Address_NotNull: "地址不能为空",

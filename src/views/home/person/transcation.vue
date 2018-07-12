@@ -25,7 +25,7 @@
             <el-form-item 
                 prop="amount" 
               >
-                <el-input v-model="formInline.amount"  :placeholder="'余额'+ddcbalance"></el-input>
+                <el-input v-model="formInline.amount"  :placeholder="'余额:'+ddcbalance"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button class="trsBtn" type="primary" :loading="btn_loading" @click="validate()">{{$t("message.trs_form_btn")}}</el-button>
@@ -180,8 +180,16 @@ export default {
 .trs .el-form-item__label{
   padding: 0px;
 }
+.trs .el-select{
+  width: 100%;
+}
 .trsBtn,.el-select{
   transition: all .5s ease-in-out;
+
+}
+.trs .el-form--label-top .el-form-item__label{
+  padding-bottom: 0px !important;
+  line-height:30px !important;
 }
 .form_label{
     font-size: 14px;

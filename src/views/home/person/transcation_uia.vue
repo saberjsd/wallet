@@ -79,7 +79,7 @@ export default {
         currency: "",
         message:""
       },
-      uia: [{currency:"XAS"},{currency:Config.cy}],
+      uia: [{currency:"XAS"},{currency:"USO"}],
       rules2: {
         address: [{ validator: checkAddress, trigger: "blur" }],
         amount: [{ validator: cheackAmount, trigger: "blur" }]
@@ -96,7 +96,7 @@ export default {
     if(cuy=="XAS"){
       this.formInline.currency="XAS";
     }else{
-      this.formInline.currency=Config.cy;
+      this.formInline.currency="USO";
     }
     // this.getUia();
   },
@@ -258,7 +258,8 @@ export default {
 </script>
 <style>
 .uiaTrans{
-  padding: 20px;
+  max-width: 500px;
+  padding:10px;
 }
 .uiaTrans .el-form--label-top .el-form-item__label{
   padding-bottom: 0px !important;

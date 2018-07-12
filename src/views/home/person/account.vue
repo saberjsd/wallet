@@ -363,7 +363,7 @@ export default {
       Depose_btn_disable: false,
       Depose_timer: 15,
       Depose_time: 0,
-      Asset: { XAS: 0, USO: 0 },
+      Asset: { USO: 0 ,XAS: 0},
       AssetArray: [],
       AssetShow: false,
       Height: 0,
@@ -489,7 +489,7 @@ export default {
           console.log("data", data);
           if (data.success) {
             // var asset=[{currency:"XAS",balance:0},{currency:Config.cy}];
-            var asset = { XAS: 0, USO: 0 };
+            var asset = {USO: 0, XAS: 0  };
             data.balances.map(item => {
               if (item.currency == "XAS") {
                 asset.XAS = Number(item.balance / 1e8);
@@ -808,14 +808,15 @@ export default {
           this.$http.spread((ddc, xas) => {
             ddc = ddc.data;
             xas = xas.data;
-            if (xas.success) {
-              this.Asset.XAS = parseFloat((xas.balance / 1e8).toFixed(8));
-              //this.AssetArray.push({currency:"XAS",balance:this.Asset.XAS})
-            }
             if (ddc.success) {
               this.Asset.USO = parseFloat(ddc.balance.balanceShow);
               //this.AssetArray.push({currency:Config.cy,balance:this.Asset.DDC})
             }
+            if (xas.success) {
+              this.Asset.XAS = parseFloat((xas.balance / 1e8).toFixed(8));
+              //this.AssetArray.push({currency:"XAS",balance:this.Asset.XAS})
+            }
+
             var arry = [];
             for (var item in this.Asset) {
               arry.push({

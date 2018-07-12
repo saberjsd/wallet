@@ -258,7 +258,8 @@ export default {
 </script>
 <style>
 .uiaTrans{
-  padding: 20px;
+  max-width: 500px;
+  padding:10px;
 }
 .uiaTrans .el-form--label-top .el-form-item__label{
   padding-bottom: 0px !important;

@@ -34,6 +34,7 @@ color:#fff;
 } */
 html,body{
   background: rgb( 244,247,249);
+  height: 100%;
 }
 a{
   text-decoration: none;

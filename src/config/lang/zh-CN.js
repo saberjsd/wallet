@@ -105,7 +105,7 @@ export const message = {
     KongTou_info_Confirm_1: "提示",
     KongTou_info_Confirm_2: "确定",
     KongTou_info_Confirm_3: "取消",
-    Nav_log: "USO 钱包",
+    Nav_log: "USO 在线钱包",
 }
 export default {
     message: message,

@@ -279,19 +279,19 @@ ${address}\n\r
 .loginwrap{
   margin: 0px auto;
   position: relative;
-    padding-top: 225px;
+    padding-top: 200px;
 }
 .loginTop{
     position: absolute;
-    top: 50px;
-    left: calc(50% - 568px);
+    top: 48px;
+    left: calc(50% - 540px);
 }
 .login{
   width:650px;
   height:500px;
   margin: 0px auto;
   background: url("../assets/img/login_1_bg.png") no-repeat ;
-  background-color: #fff;
+  background-color: transparent;
   position: relative;
   box-shadow: 0 0 44px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

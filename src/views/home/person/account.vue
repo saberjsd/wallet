@@ -33,13 +33,13 @@
                 </div> -->
 
 								<el-table :data="BanlanceArray" class="myTable">
-                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50">
+                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="100">
                         <template slot-scope="scope">
                           <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
                           <span v-else class="USO-color">{{scope.row.currency}}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="balance" :label="$t('message.account_table_balance')"  min-width="80">
+                    <el-table-column prop="balance" :label="$t('message.account_table_balance')"  min-width="100">
                         <template slot-scope="scope">
                           <!-- <span v-if="!USOBalanceShow">********</span> -->
                           <span class="balance-style">{{scope.row.balance}}</span>
@@ -64,24 +64,33 @@
           <el-col :span="ddcTableWidth.xasspan" :xs="24">
             <div class="Wallet">
               <p class="Wallet_Header">
-                <el-button class="HideAssetBtn" plain @click="showAsset()">{{AssetShow?'点击隐藏':'点击显示'}}</el-button>
                 <span v-show="AssetShow">阿希链</span>
+                <el-button class="HideAssetBtn" plain @click="showAsset()" v-show="AssetShow">点击隐藏
+                  <i class="el-icon-d-arrow-right animation"></i>
+                </el-button>
+                
+                
+                <span class="padding" v-show="!AssetShow"></span>
               </p>
               <el-card class="transition-box">
-                <!-- <div class="toggleShow" v-if="AssetShow"  @click="toggle_balance('XAS')">
-                  <img :src="showImg" alt="">
+                <!-- <div class="toHide" v-show="AssetShow" @click="showAsset()">
+                  <span><i class="el-icon-d-arrow-right"></i>点击隐藏</span>
                 </div> -->
-                <span class="main-line" v-show="!AssetShow">阿希链</span>
+                
+                <div class="main-line" v-show="!AssetShow" @click="showAsset()">
+                  <span><i class="el-icon-d-arrow-left"></i>阿希链</span>
+                </div>
+                <el-collapse-transition>
+                <!-- <transition-group name="el-fade-in" mode="out-in"> -->
 
-                <transition-group name="el-fade-in" mode="out-in">
-                  <el-table key="table" v-if="AssetShow" :data="AssetArray" class="myTable">
-                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="50">
+                  <el-table key="table" v-show="AssetShow" :data="AssetArray" class="myTable">
+                    <el-table-column prop="currency" :label="$t('message.account_table_currency')" min-width="100">
                       <template slot-scope="scope">
                         <span v-if="scope.row.currency=='XAS'" class="XAS-color">{{scope.row.currency}}</span>
                         <span v-else class="USO-color">{{scope.row.currency}}</span>
                       </template>
                     </el-table-column>
-                    <el-table-column prop="balance" :label="$t('message.account_table_balance')" min-width="80">
+                    <el-table-column prop="balance" :label="$t('message.account_table_balance')" min-width="100">
                       <template slot-scope="scope">
                         <!-- <span v-if="!XASBalanceShow">********</span> -->
                         <span class="balance-style">{{scope.row.balance}}</span>
@@ -98,7 +107,11 @@
                       </template>
                     </el-table-column>
                   </el-table>
-                </transition-group>
+                <!-- </transition-group> -->
+
+                </el-collapse-transition>
+
+
               </el-card>
             </div>
           </el-col>
@@ -441,7 +454,7 @@ export default {
     },
     ddcTableWidth() {
       if (this.AssetShow) {
-        //展开状态
+        //展开状态  
         return { span: 12, xasspan: 12 };
       } else {
         return { span: 22, xasspan: 2};
@@ -968,12 +981,12 @@ export default {
   margin-bottom: 10px;
 }
 .Wallet_Header {
-  line-height: 21px;
+  line-height: 27px;
   font-size: 18px;
   color: #666666;
 }
 .Wallet_Header button{
-  padding: 2px 5px;
+  padding: 4px 5px;
 }
 .Wallet .el-button {
   font-size: 22px;
@@ -1014,14 +1027,65 @@ export default {
 }
 .main-line{
   position: absolute;
-  width: 20px;
-  height: 120px;
-  top: 50px;
-  right: 26px;
+  width: 78px;
+  height: 183px;
+  top: 0px;
+  right: 0px;
   z-index: 99;
   font-size: 20px;
-  line-height: 24px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-top: 10px solid #f9a527;
 }
+.main-line span,.toHide span{
+  display: inline-block;
+  width: 20px;
+  height: 100px;
+  line-height: 24px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+@keyframes toshow {
+  0%{transform: translateX(0px)}
+  50%{transform: translateX(-5px)}
+  100%{transform: translateX(0px)}
+}
+.main-line i{
+  float: left;
+  /* margin-top: 76px;
+  margin-left: 10px; */
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  animation: toshow 1s ease-in-out infinite;
+  font-size: 24px;
+}
+i.animation{
+  animation: toshow 1s ease-in-out infinite;
+  /* font-size: 24px; */
+  margin-left: 5px;
+  position: relative;
+  top: 1px;
+}
+.toHide{
+  /* color: #fff;  */
+  border-radius: 5px 0 0 5px;
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 183px;
+  z-index: 99;
+  cursor: pointer;
+  /* background: #f9a527; */
+  border-right: 1px solid #eeeeee;
+}
+.toHide span{
+  height: 136px;
+  font-size: 18px;
+  margin-left: 12px;
+}
+
+
 
 
 .Trans .cell {
@@ -1093,6 +1157,9 @@ export default {
 .HideAssetBtn:hover{
   border-color: #43df86 !important;
   color: #57c586 !important;
+}
+.padding{
+  display: inline-block;
 }
 .myQr {
   text-align: center;

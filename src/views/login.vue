@@ -104,7 +104,9 @@
                           <el-form-item :label="$t('message.Login_Lable_Secret')" prop="pass" label-width="160px">
                             <el-input id="pass" type="textarea" :rows="3" :readonly="true"  v-model="ruleForm3.pass" auto-complete="off"></el-input>
                           </el-form-item>
-					                <p class="info">{{$t("message.Login_New_Info")}}</p>
+					                <p class="info">
+                            {{$t("message.Login_New_Info")}}
+                          </p>
 
                           <el-form-item> 
                             <el-button @click="toLogin()"     class="mybtn loginBtn">{{$t("message.Login_Btn_Login1")}}</el-button>
@@ -387,9 +389,10 @@ ${address}\n\r
   margin-left: 44px;
 }
 .login .info{
-  font-size: 16px;
+    font-size: 16px;
     color: #999;
     margin-bottom: 10px;
+    margin-top: -20px;
 }
 .login .el-form-item{
   margin-bottom: 35px;

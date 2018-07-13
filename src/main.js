@@ -18,37 +18,37 @@ Vue.use(VueI18n)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 const i18n = new VueI18n({
-  locale: 'CN',    // 语言标识
-  messages: messages
+    locale: 'CN', // 语言标识
+    messages: messages
 })
 locale.i18n((key, value) => i18n.t(key, value))
-// Vue.config.lang = 'zh-cn'
-// Vue.locale('zh-cn', zhLocale)
-// Vue.locale('en', enLocale)
+    // Vue.config.lang = 'zh-cn'
+    // Vue.locale('zh-cn', zhLocale)
+    // Vue.locale('en', enLocale)
 Vue.prototype.$http = Axios;
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
-/* eslint-disable no-new */
+    /* eslint-disable no-new */
 
 import {
-  Button,
-  Select,
-  Dialog,
-  Pagination,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  InputNumber,
-  Table,
-  TableColumn,
-  Tooltip,
-  Form,
-  FormItem,
-  Loading,
-  Message,
+    Button,
+    Select,
+    Dialog,
+    Pagination,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Input,
+    InputNumber,
+    Table,
+    TableColumn,
+    Tooltip,
+    Form,
+    FormItem,
+    Loading,
+    Message,
 } from 'element-ui';
 Vue.use(Button);
 Vue.use(Select);
@@ -68,10 +68,10 @@ Vue.use(Loading.directive);
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$message = Message;
 new Vue({
-  el: '#app',
-  router,
-  store,
-  i18n,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    i18n,
+    components: { App },
+    template: '<App/>'
 })

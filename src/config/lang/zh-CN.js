@@ -7,7 +7,7 @@ export const message = {
     Login_Btn_Reset: '重置',
     Login_Btn_Reg: "新账户",
     Login_dialog_title: "创建主密钥",
-    Login_Btn_Login1: "登录",
+    Login_Btn_Login1: "复制",
     Login_Btn_Save: "复制并下载",
     Login_New_Info: "密钥为登录在线钱包唯一凭证，请妥善保管，请点击【复制并下载】密钥",
     Login_Confirm: "你尚未复制该密钥,确认关闭",

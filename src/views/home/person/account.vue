@@ -220,7 +220,13 @@
       <el-dialog
           :visible.sync="dialogVisibleQR">
           <div class="myQrBody">
-            <vue-qr :text="user.address"  class="myQr" :logoSrc="logoSrc"  :margin="0" :dotScale="0.8" :size="190" colorDark="#333"></vue-qr>
+            <vue-qr :text="user.address"  class="myQr" 
+                    :logoSrc="logoSrc"  
+                    :margin="0" 
+                    :dotScale="0.8" 
+                    :size="190"
+                    colorDark="#333">
+            </vue-qr>
             <p> 钱包地址</p>
           </div>
           
@@ -228,7 +234,13 @@
             <el-dialog
           :visible.sync="dialogVisibleQRPri">
           <div class="myQrBody">
-            <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="0" :dotScale="0.8" :size="190" colorDark="#333"></vue-qr>
+            <vue-qr :text="user.secret"  class="myQr" 
+                    :logoSrc="logoSrc" 
+                    :margin="0" 
+                    :dotScale="0.8" 
+                    :size="190" 
+                    colorDark="#333">
+            </vue-qr>
             <p class="tips"> 密钥为登录在线钱包唯一凭证，请妥善保管，切勿分享</p>
           </div>
           

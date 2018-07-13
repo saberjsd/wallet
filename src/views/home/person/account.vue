@@ -220,16 +220,16 @@
       <el-dialog
           :visible.sync="dialogVisibleQR">
           <div class="myQrBody">
-            <vue-qr :text="user.address"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
-            <p style="text-align:center"> 钱包地址</p>
+            <vue-qr :text="user.address"  class="myQr" :logoSrc="logoSrc"  :margin="0" :dotScale="0.8" :size="190" colorDark="#333"></vue-qr>
+            <p> 钱包地址</p>
           </div>
           
       </el-dialog>
             <el-dialog
           :visible.sync="dialogVisibleQRPri">
           <div class="myQrBody">
-            <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="10" :dotScale="0.8" colorDark="#333"></vue-qr>
-            <p style="text-align:center"> 密钥为登录在线钱包唯一凭证，请妥善保管，切勿分享</p>
+            <vue-qr :text="user.secret"  class="myQr" :logoSrc="logoSrc" :margin="0" :dotScale="0.8" :size="190" colorDark="#333"></vue-qr>
+            <p class="tips"> 密钥为登录在线钱包唯一凭证，请妥善保管，切勿分享</p>
           </div>
           
       </el-dialog>
@@ -1156,11 +1156,6 @@ i.animation{
   color: #1691b6;
 }
 
-
-.myQrBody{
-  min-height: 200px;
-}
-
 .transition-box {
   min-height: 183px;
 }
@@ -1184,7 +1179,22 @@ i.animation{
 }
 .myQr {
   text-align: center;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  background: url('../../../assets/img/qrcode-bg.png') no-repeat;
+  background-position: 23px 2px;
 }
+.myQr img{
+  margin-top: 70px;
+}
+.myQrBody p{
+  text-align:center;font-size: 16px;
+}
+.myQrBody p.tips{
+  color: red;
+}
+
 .el-dialog__headerbtn {
   font-size: 35px;
 }
@@ -1239,10 +1249,6 @@ border:1px solid #57c586 !important;color: #57c586;position: relative;top: -1px;
   .ShowAssetBtn {
     margin-top: 0px;
     margin-left: calc(50% - 44px);
-  }
-  .myQr img {
-    width: 80%;
-    min-height: 205px;
   }
   .Address .btnSpan {
     line-height: unset;

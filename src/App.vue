@@ -39,6 +39,7 @@ html,body{
 a{
   text-decoration: none;
 }
+i,b{font-style: normal;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

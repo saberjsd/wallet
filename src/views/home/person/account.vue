@@ -80,7 +80,7 @@
                 <div class="main-line" v-show="!AssetShow" @click="showAsset()">
                   <span><i class="el-icon-d-arrow-left"></i>阿希链</span>
                 </div>
-                <el-collapse-transition>
+                <!-- <el-collapse-transition> -->
                 <!-- <transition-group name="el-fade-in" mode="out-in"> -->
 
                   <el-table key="table" v-show="AssetShow" :data="AssetArray" class="myTable">
@@ -107,9 +107,10 @@
                       </template>
                     </el-table-column>
                   </el-table>
+
                 <!-- </transition-group> -->
 
-                </el-collapse-transition>
+                <!-- </el-collapse-transition> -->
 
 
               </el-card>
@@ -137,8 +138,14 @@
               </el-table-column>
               <el-table-column prop="amounts" :label="$t('message.account_table_amounts')">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.amounts.indexOf('USO')> -1" class="USO-color">{{scope.row.amounts}}</span>
-                  <span v-else class="XAS-color">{{scope.row.amounts}}</span>
+                  <span v-if="scope.row.currency == 'USO'">
+                    <i :style="{'color':scope.row.transType}">{{scope.row.amounts}}</i>
+                    <i class="USO-color">{{scope.row.currency}}</i>
+                  </span>
+                  <span v-else>
+                    {{scope.row.amounts}}
+                    <i class="XAS-color">{{scope.row.currency}}</i>
+                  </span>
                 </template>
               </el-table-column>
               <el-table-column prop="time" min-width="100" :label="$t('message.account_table_time')">
@@ -404,6 +411,10 @@ export default {
       showImg:'../../../assets/img/index_visible_2.png',
 
       goPage:'',
+      // currencyType:{
+      //   1: '#6ddc9c', //'USO'
+      //   2: '#f9a527' //'XAS'
+      // }
     };
   },
   mounted() {
@@ -573,19 +584,29 @@ export default {
                 return b.timestamp - a.timestamp;
               })
               .map((item, index) => {
+                // debugger  
                 var currency =
                   item.currency == Config.cy ? "USO" : item.currency;
-                item.amounts = item.amount / 1e8 + " " + currency;
+                item.amounts = item.amount / 1e8;
+                if(item.currency=='ubiquity.USO'){
+                  // item.Ctype = 1
+                  item.currency = 'USO'
+                }else if(item.currency=='XAS'){
+                  // item.Ctype = 2
+                }
+
                 if (item.senderId == address) {
-                  item.senderId =
-                    item.senderId + "(" + this.$t("message.account_mine") + ")";
+                  item.senderId = item.senderId + "(" + this.$t("message.account_mine") + ")";
+                  item.amounts = '-'+item.amounts
+                  item.transType = 'red'
+                }else{
+                  item.amounts = '+'+item.amounts
+                  item.transType = 1
+                   item.transType = '#02cd1a'
                 }
                 if (item.recipientId == address) {
-                  item.recipientId =
-                    item.recipientId +
-                    "(" +
-                    this.$t("message.account_mine") +
-                    ")";
+                  item.recipientId = item.recipientId + "(" + this.$t("message.account_mine") + ")";
+                  
                 }
                 if (item.type == 3 || item.type == 2005) {
                   item.type = this.$t("message.account_table_type_3");
@@ -1173,9 +1194,9 @@ i.animation{
 .go-page input{width: 60px;height: 25px;float: left;border-radius: 5px;border: 1px solid #6ddc9c;outline: none;background: transparent;
 color: #656565;text-align: center;margin-top: 0px;margin-left: 5px;}
 .go-page button{border-radius: 5px;float: right;margin-left: 10px;cursor: pointer;
-border:1px solid #57c586;color: #57c586;position: relative;top: -1px;}
+border:1px solid #57c586 !important;color: #57c586;position: relative;top: -1px;}
 .go-page button:hover{
-  color: #57c586;
+  color: #57c586 !important;
 }
 .Trans .el-pagination.is-background .el-pager li:not(.disabled).active{
   background-color: #57c586;

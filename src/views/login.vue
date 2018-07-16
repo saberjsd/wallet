@@ -62,7 +62,7 @@
           <img src="../assets/img/text_LOGIN.png"/>
         </div>
         <div class="logo_welcome">
-          <p>欢迎回来</p>
+          <p>欢迎登录</p>
         </div>
         <div class="logo_please">
           <p>请在下方登录您的在线钱包</p>

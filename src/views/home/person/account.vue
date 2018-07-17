@@ -241,7 +241,7 @@
                     :size="190" 
                     colorDark="#333">
             </vue-qr>
-            <p class="tips"> 密钥为登录在线钱包唯一凭证，请妥善保管，切勿分享</p>
+            <p class="tips"> 密钥为登录在线钱包唯一凭证，请妥善保管，丢失不能找回，切勿分享</p>
           </div>
           
       </el-dialog>
@@ -1207,8 +1207,8 @@ i.animation{
   color: red;
 }
 
-.el-dialog__headerbtn {
-  font-size: 35px;
+.el-dialog__headerbtn .el-dialog__close {
+  font-size: 36px !important;
 }
 
 .go-page{display: inline-block;color: #656565;height: 30px;width: 160px;margin-left: 15px;}

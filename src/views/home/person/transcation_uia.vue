@@ -126,7 +126,18 @@ export default {
       var recipientId = this.formInline.address;
       var amount = (parseFloat( this.formInline.amount) *Math.pow(10,8));
       var message=this.formInline.message;
-      var trs=AschJs.transaction.createTransaction(recipientId,amount,message,secret,secondSecret|| undefined);
+      // var trs=AschJs.transaction.createTransaction(recipientId,amount,message,secret,secondSecret|| undefined);
+      var trs = AschJs.transaction.createTransactionEx(
+        {
+          type: 1,
+          fee: 10000000,
+          args: [amount, recipientId],
+          secret,
+          secondSecret: secondSecret,
+          message
+        }
+
+      );
       this.btn_loading = true;
       this.$http
         .post(
@@ -169,13 +180,24 @@ export default {
       var amount = (this.formInline.amount *Math.pow(10,precision)).toFixed(0);
       var message=this.formInline.message;
       var recipientId = this.formInline.address;
-      var trs = AschJs.uia.createTransfer(
-        currency,
-        amount,
-        recipientId,
-        message,
-        secret,
-        secondSecret
+      // var trs = AschJs.uia.createTransfer(
+      //   currency,
+      //   amount,
+      //   recipientId,
+      //   message,
+      //   secret,
+      //   secondSecret
+      // );
+      var trs = AschJs.transaction.createTransactionEx(
+        {
+          type: 103,
+          fee: 10000000,
+          args: ['ubiquity.USO', amount, recipientId],
+          secret,
+          secondSecret: secondSecret,
+          message
+        }
+
       );
       this.btn_loading = true;
       this.$http

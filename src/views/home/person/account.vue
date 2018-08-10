@@ -48,7 +48,7 @@
                     <el-table-column :label="$t('message.account_table_operation')" min-width="150">
                         <template slot-scope="scope">
                             <el-tooltip class="item" effect="dark" :content='$t("message.account_tooltip_withDraw")' placement="top-start">
-                              <el-button class="operation" @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
+                              <el-button class="operation  dis" disabled @click="handleClick(scope.row)"  type="text" size="mini">{{$t("message.account_table_t_oper_1")}}</el-button>
                             </el-tooltip>
                               <el-tooltip v-if="scope.row.currency!='XAS'" class="item" effect="dark" :content='$t("message.account_tooltip_trans")' placement="top-start">
                                 <el-button  class="operation" @click="$router.push({name:'Trans',query:{currency:scope.row.currency}})" type="text" size="mini">{{$t("message.account_table_t_oper_2")}}</el-button>
@@ -707,6 +707,7 @@ export default {
       );
     },
     handleClick(row) {
+      return
       //提现点击事件
       if (this.$refs["form"]) {
         this.$refs["form"].resetFields();
@@ -814,12 +815,22 @@ export default {
       if (this.$store.state.user && this.$store.state.user.secondSignature) {
         secondSecret = this.DepositeForm.secondSecret;
       }
-      var transaction = AschJs.transfer.createInTransfer(
-        dappid,
-        currency,
-        amount,
-        secret,
-        secondSecret
+      // var transaction = AschJs.transfer.createInTransfer(
+      //   dappid,
+      //   currency,
+      //   amount,
+      //   secret,
+      //   secondSecret
+      // );
+      var transaction = AschJs.transaction.createTransactionEx(
+        {
+          type: 204,
+          fee: 10000000,
+          args: ['ubiquity', currency, amount],
+          secret,
+          secondSecret: secondSecret
+        }
+
       );
       this.Depose_btn_loading = true;
       this.$http
@@ -877,11 +888,21 @@ export default {
             ddc = ddc.data;
             xas = xas.data;
             if (ddc.success) {
-              this.Asset.USO = parseFloat(ddc.balance.balanceShow);
-              //this.AssetArray.push({currency:Config.cy,balance:this.Asset.DDC})
+              // debugger
+              // this.Asset.DDC = parseFloat((parseFloat(ddc.balance.balance)/ 1e8).toFixed(8));
+              if(ddc.data == 'No balance' || typeof ddc.data == 'string'){
+                ddc.data = 0
+                this.Asset.USO = parseFloat((parseFloat(ddc.data)/ 1e8).toFixed(8));
+              }else{
+                this.Asset.USO = parseFloat((parseFloat(ddc.balance.balance)/ 1e8).toFixed(8));
+              }
+              // console.log(typeof ddc.data)
+              
+              //this.AssetArray.push({currency:Config.cy,balance:this.Asset.DDC}) 
             }
             if (xas.success) {
               this.Asset.XAS = parseFloat((xas.balance / 1e8).toFixed(8));
+              // this.Asset.DDC = parseFloat((parseFloat(ddc.balance.balance)/ 1e8).toFixed(8));
               //this.AssetArray.push({currency:"XAS",balance:this.Asset.XAS})
             }
 
@@ -1166,6 +1187,9 @@ i.animation{
 }
 .operation span{
   color: #1691b6;
+}
+.operation.dis span{
+  color: #c0c4cc !important;
 }
 
 .transition-box {

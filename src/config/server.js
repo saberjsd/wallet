@@ -7,7 +7,7 @@ const magic_test="594fe0f3";
 const magic_mainnet="5f5b3cf5";
 export default {
     aschTrans:api.baseUrl+"/peer/transactions",
-    asset:api.baseUrl+"/api/uia/balances/",
+    asset:api.baseUrl+"/api/v2/balances/",
     height:dappBaseUrl+ "/blocks/height",
     xas:api.baseUrl+ "/api/accounts/getBalance/",
     baseUrl:api.baseUrl,
@@ -17,7 +17,7 @@ export default {
     tixian:dappBaseUrl+"/transactions/signed",
     UiaTrans:api.baseUrl+"/peer/transactions",
     assetTransfers:api.baseUrl+"/api/uia/transactions/my",
-    UiaMessage:api.baseUrl+"/api/uia/balances/",
+    UiaMessage:api.baseUrl+"/api/v2/balances/",
     setNickname:dappBaseUrl+"/transactions/unsigned",
     balances:dappBaseUrl+"/balances/",
     getTransation:dappBaseUrl+"/transactions",

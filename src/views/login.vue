@@ -82,6 +82,21 @@
                     </el-form-item> 
 
           </el-form>
+        <el-popover placement="top-end" class="pop"
+                      width="220"
+                      trigger="hover">
+
+            <!-- <el-table :data="gridData">
+              <el-table-column width="150" property="date" label="日期"></el-table-column>
+              <el-table-column width="100" property="name" label="姓名"></el-table-column>
+              <el-table-column width="300" property="address" label="地址"></el-table-column>
+            </el-table> -->
+            <div class="pop-body"><img src="../assets/img/app.png" alt="">
+            </div>
+            
+            <a target="_blank" href="https://newappaz.oss-cn-hongkong.aliyuncs.com/app-uso-release.apk
+" slot="reference" class="menu-text"><i class="el-icon-download"></i> 安卓移动钱包下载 </a>
+          </el-popover>
       </div>
       <div class="login" v-else>
         <div class="logo_img">
@@ -402,6 +417,16 @@ ${address}\n\r
 }
 .login .el-input__suffix{
   font-size: 20px;
+}
+
+.login .pop{
+  position: absolute;
+  bottom: 23px;
+  right: 52px;
+}
+.login .pop a{
+  color: #656565;
+  outline: none;
 }
 /* .loginwrap {
   /* //height: calc(100% - 80px); */

@@ -826,7 +826,7 @@ export default {
         {
           type: 204,
           fee: 10000000,
-          args: ['ubiquity', currency, amount],
+          args: ['ubiquity', currency, amount+""],
           secret,
           secondSecret: secondSecret
         }

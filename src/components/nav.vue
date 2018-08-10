@@ -29,10 +29,32 @@
               <span class="menu-text">3U官网</span>
             </a>
           </li>
+
+
           <li class="menu-languge menu-right" style="margin-left:60px;" v-if="IsLogin" @click="logout()" >
             <i class="menu-icon logout"></i>
             <span class="menu-text">{{$t("message.NavLogOut")}}</span>
           </li>
+
+          
+
+          <el-popover placement="bottom" class="pop"
+                      width="220"
+                      trigger="hover">
+
+            <!-- <el-table :data="gridData">
+              <el-table-column width="150" property="date" label="日期"></el-table-column>
+              <el-table-column width="100" property="name" label="姓名"></el-table-column>
+              <el-table-column width="300" property="address" label="地址"></el-table-column>
+            </el-table> -->
+            <div class="pop-body"><img src="../assets/img/app.png" alt="">
+            </div>
+            
+            <li slot="reference" class="menu-languge menu-right" style="margin-left:60px;">
+              <a target="_blank" href="https://newappaz.oss-cn-hongkong.aliyuncs.com/app-uso-release.apk
+" class="menu-text"><i class="el-icon-download"></i> 安卓移动钱包下载 </a>
+            </li>
+          </el-popover>
           <!-- <li class="menu-login menu-right">
             <span class="menu-icon"><img style="margin-top: 30px;" src='../assets/images/images/语言.png'/></span>
             <span class="menu-text">
@@ -219,6 +241,25 @@ export default {
   background-position: -24px center;
   color: #6ddc9c;
 }
+
+.nav .pop{
+  float: right;
+  height: 70px;
+  cursor: pointer;
+}
+.nav .pop li{
+  height: 100%;
+  line-height: 70px;
+} 
+.nav .pop a{
+  color: #656565;
+  outline: none;
+}
+.nav .pop-body{
+  text-align: center;
+  /* width: 220px;height: 220px; */
+}
+
 @media screen and (max-width:768px ){
 
     .menu-logo,

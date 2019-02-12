@@ -1,1 +1,1 @@
-#3U-wallet
+#wallet
